@@ -1,0 +1,28 @@
+﻿@using Bookstore.Models;
+
+@model IEnumerable<LoanModel>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Recebedor</th>
+            <th scope="col">Fornecedor</th>
+            <th scope="col">Livro</th>
+            <th scope="col">Última Atualização</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var loan in Model)
+            {
+                <tr>
+                    <td>@loan.Receiver</td>
+                    <td>@loan.Supplier</td>
+                    <td>@loan.BookName</td>
+                    <td>@loan.LastModified</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
