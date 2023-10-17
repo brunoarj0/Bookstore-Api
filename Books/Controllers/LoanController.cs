@@ -69,5 +69,35 @@ namespace Bookstore.Controllers
 
             return View(loan);
         }
+
+        [HttpGet]
+        public IActionResult Delete(Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var loan = _context.Loan.FirstOrDefault(l => l.Id == id);
+
+            if (loan == null)
+            {
+                return NotFound();
+            }
+
+            return View(loan);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(LoanModel loan)
+        {
+            if(loan == null)
+                return NotFound();
+
+            _context.Remove(loan);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
